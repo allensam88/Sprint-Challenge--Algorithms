@@ -100,25 +100,30 @@ class SortingRobot:
         """
         # Utilize bubble sort methodology
         # swapping card values by comparing selected card with next card
+
         # initialize the light to be on to start swap process
         self.set_light_on()
         while self.light_is_on():
             # flip the light off again to wait for a swap to happen
             self.set_light_off()
+
             while self.can_move_right():
                 # pick up first or next item
                 self.swap_item()
                 # look at the next index item
                 self.move_right()
+
                 # if the item is bigger than the prior item, swap it
                 if self.compare_item() == 1:
                     self.swap_item()
                     # indicate that a swap occurred
                     self.set_light_on()
-                    # in all other cases, just put the item back in it's original spot
+
+                # in all other cases, just put the item back in it's original spot
                 self.move_left()
                 self.swap_item()
                 self.move_right()
+
             # once you reach the end, go all the way back to the beginning
             while self.can_move_left():
                 self.move_left()
