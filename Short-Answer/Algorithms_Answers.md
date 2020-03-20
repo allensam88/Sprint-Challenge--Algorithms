@@ -17,11 +17,9 @@ Using the same rationale as above, this evalutates to
 
 1 + (1n * 2n) = 1 + 2n^2 = O(n^2)
 
-c)
+c) I think it is O(c^n)
 
 for this recursion loop, we need to figure out how many times the function is being called
-
-for n = 
 
 ## Exercise II
 
