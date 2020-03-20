@@ -101,20 +101,33 @@ class SortingRobot:
         # Utilize bubble sort methodology
         # swapping card values by comparing selected card with next card
 
+        print(self._list)
         self.swap_item()
-        print(f'Selected card value: {self._item}')
+        print(f'Pick up card: {self._item}')
         print(self._list)
         self.move_right()
         print(f'Look at card in next index: {self._position}')
-        if self.compare_item() < 0:
-            print('The card is smaller, return selection to original spot')
+        if self.compare_item() <= 0:
+            print('If the card is smaller, return selection to original spot')
             # then don't swap cards
             # move back one index
             self.move_left()
+            print('Go back')
             # put card back in original spot
             self.swap_item()
+            print(f'Drop card selection')
             # go to next card
             self.move_right()
+        elif self.compare_item() > 0:
+            print('If the card is larger, swap out')
+            self.swap_item()
+            print(f'Swap and pick up new card: {self._item}')
+            self.move_left()
+            print(f'Place card in prior spot: {self._position}')
+            self.swap_item()
+            print(f'Drop card selection')
+            self.move_right()
+            print('Move to next card')
 
 
 if __name__ == "__main__":
@@ -124,7 +137,7 @@ if __name__ == "__main__":
     l1 = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1,
           45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
-    l = [7, 10, 2, 5]
+    l = [7, 9, 2, 5]
 
     robot = SortingRobot(l)
 
