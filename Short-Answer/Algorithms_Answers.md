@@ -17,11 +17,15 @@ Using the same rationale as above, this evalutates to
 
 1 + (1n * 2n) = 1 + 2n^2 = O(n^2)
 
-c) I think it is O(c^n)
+c) O(n)
 
 for this recursion loop, we need to figure out how many times the function is being called
+it's only being called once.
+for bunnies = 4
+2 + 2 + 2 + 2 + 0
 
 ## Exercise II
+My First Answer:
 
 I think this algorithm should be recursive.
 The base condition would be when the eggs stop breaking
@@ -34,3 +38,16 @@ It's like a game of 'hotter, colder' when searching for something blindfolded.
 
 Since this is a form of binary searching, I think Big O could be O(log n).
 
+Correct Solution:
+start at 1st floor and drop the egg, see if it breaks or not
+optimize for resource... not for time necessarily
+
+def egg_drop(n, f):
+	counter = 1
+	for i in n:
+		if i != f:
+			counter +=1
+		else:
+			return counter
+
+This will be an O(n) event
