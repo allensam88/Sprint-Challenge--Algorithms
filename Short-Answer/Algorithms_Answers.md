@@ -2,14 +2,52 @@
 
 ## Exercise I
 
-a)
+a) O(n) because the while loop will grow linearly with increasing n
 
+for example if n = 2, then 'a' will be computed only one time, but for n = 3, it will be computed
 
-b)
+Also, by evaluating the lines, we can see that the 1st line is a constant
+then the line inside the while loop is a constant, which you multiply by the loop
 
+this gives us 1 + 1n, which still levels out to be O(n)
 
-c)
+b) O(n^2)
+
+Using the same rationale as above, this evalutates to
+
+1 + (1n * 2n) = 1 + 2n^2 = O(n^2)
+
+c) O(n)
+
+for this recursion loop, we need to figure out how many times the function is being called
+it's only being called once.
+for bunnies = 4
+2 + 2 + 2 + 2 + 0
 
 ## Exercise II
+My First Answer:
 
+I think this algorithm should be recursive.
+The base condition would be when the eggs stop breaking
+it could also work in a binary way.... so maybe it starts off where you drop the egg from the highest floor to see if it breaks.
+if it breaks, then go to the middle floor and drop... it it still breaks, then go to the new midpoint and drop again
+if it survives the fall, then you are getting closer, so go back up to another new midpoint, and drop again
+keep splitting in half until you find the exact floor where it survives and the exact floor where it breaks.
 
+It's like a game of 'hotter, colder' when searching for something blindfolded.
+
+Since this is a form of binary searching, I think Big O could be O(log n).
+
+Correct Solution:
+start at 1st floor and drop the egg, see if it breaks or not
+optimize for resource... not for time necessarily
+
+def egg_drop(n, f):
+	counter = 1
+	for i in n:
+		if i != f:
+			counter +=1
+		else:
+			return counter
+
+This will be an O(n) event

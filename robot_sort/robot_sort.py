@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,15 +98,82 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # Utilize bubble sort methodology
+        # swapping card values by comparing selected card with next card
+
+        # initialize the light to be on to start swap process
+        self.set_light_on()
+        while self.light_is_on():
+            # flip the light off again to wait for a swap to happen
+            self.set_light_off()
+
+            while self.can_move_right():
+                # pick up first or next item
+                self.swap_item()
+                # look at the next index item
+                self.move_right()
+
+                # if the item is bigger than the prior item, swap it
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    # indicate that a swap occurred
+                    self.set_light_on()
+
+                # in all other cases, just put the item back in it's original spot
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+
+            # once you reach the end, go all the way back to the beginning
+            while self.can_move_left():
+                self.move_left()
+
+
+"""
+-----Original Naive Solution-----
+	def sort(self):
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off()
+            while self.can_move_right():
+				print(self._list)
+        		self.swap_item()
+        		print(f'Pick up card: {self._item}')
+        		print(self._list)
+        		self.move_right()
+        		print(f'Look at card in next index: {self._position}')
+        		if self.compare_item() < 0:
+            		print('If the card is smaller, return selection to original spot')
+            		self.move_left()
+            		print('Go back')
+            		self.swap_item()
+            		print(f'Drop card selection')
+            		self.move_right()
+        		elif self.compare_item() >= 0:
+            		print('If the card is larger, swap out')
+            		self.swap_item()
+            		print(f'Swap and pick up new card: {self._item}')
+            		self.move_left()
+            		print(f'Place card in prior spot: {self._position}')
+            		self.swap_item()
+            		print(f'Drop card selection')
+            		self.move_right()
+            		print('Move to next card')
+            		self.set_light_on()
+        	while self.can_move_left():
+            	self.move_left()
+"""
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1,
+         45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+
+    l2 = [15, 41, 58, 49, 26, 4, 28, 8, 61,
+          60, 65, 21, 78, 14, 35, 90, 54, 5, 0]
 
     robot = SortingRobot(l)
 
